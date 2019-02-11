@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<transcript xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="lab1schema.xsd">
+  <transcript-title>
+    Statement of Academic Achievement
+  </transcript-title>
+  <institutionName>
+    Fanshawe College
+  </institutionName>
+  <printingDate>
+    2019-11-01
+  </printingDate>
+
+
+  <studentName>
+    Damoin Levine
+  </studentName>
+  <studentIdNumber>
+    1234
+  </studentIdNumber>
+  <studentAddress>
+    123 Main Street, Adelaide. ON N1B 2C3
+  </studentAddress>
+
+
+  <terms>
+    <term>
+      <termID>
+        2017 Fall
+      </termID>
+      <programName>
+        Internet Applications &amp; Web Development
+      </programName>
+      <studentStatus>In Good Standing</studentStatus>
+      <termGPA>
+        2.825
+      </termGPA>
+      <termCredits>
+        20.0
+      </termCredits>
+
+      <courses>
+        <course id="BUSI-1156">
+          <courseCode>BUSI-1156</courseCode>
+          <courseName>
+            Strategies for success
+          </courseName>
+          <courseCredits>
+            1.0
+          </courseCredits>
+          <studentGrade>B+</studentGrade>
+          <studentGradePoint>3.5</studentGradePoint>
+        </course>
+        
+        <course id="INFO-1219">
+          <courseCode>INFO-1219</courseCode>
+          <courseName>
+            NetWorking
+          </courseName>
+          <courseCredits>
+            2.0
+          </courseCredits>
+          <studentGrade>A+</studentGrade>
+          <studentGradePoint>4.2</studentGradePoint>
+        </course>
+      </courses>
+    </term>
+
+
+    <term>
+      <termID>
+        2018 Winter
+      </termID>
+      <programName>
+        Pastry
+      </programName>
+      <studentStatus>In Good Standing</studentStatus>
+      <termGPA>
+        2.825
+      </termGPA>
+      <termCredits>
+        20.0
+      </termCredits>
+
+      <courses>
+        <course id="SBUSI-1156">
+          <courseCode>SBUSI-1156</courseCode>
+          <courseName>
+            Maquiagem
+          </courseName>
+          <courseCredits>
+            1.0
+          </courseCredits>
+          <studentGrade>B+</studentGrade>
+          <studentGradePoint>3.5</studentGradePoint>
+        </course>
+
+        <course id="SINFO-1219">
+          <courseCode>SINFO-1219</courseCode>
+          <courseName>
+            Graphics
+          </courseName>
+          <courseCredits>
+            2.0
+          </courseCredits>
+          <studentGrade>A+</studentGrade>
+          <studentGradePoint>4.2</studentGradePoint>
+        </course>
+      </courses>
+    </term>
+    
+    
+  </terms>
+</transcript>
