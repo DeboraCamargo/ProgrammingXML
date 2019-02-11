@@ -12,7 +12,7 @@
 
 
   <studentName>
-    Damoin Levine
+    Debora Barbosa Silva Camargo
   </studentName>
   <studentIdNumber>
     1234
@@ -37,6 +37,7 @@
       <termCredits>
         20.0
       </termCredits>
+
       <courses>
         <course id="BUSI-1156" hours="2094">
           <courseCode>BUSI-1156</courseCode>
@@ -49,7 +50,7 @@
           <studentGrade>B+</studentGrade>
           <studentGradePoint>3.5</studentGradePoint>
         </course>
-        
+
         <course id="INFO-1219" hours="2094">
           <courseCode>INFO-1219</courseCode>
           <courseName>
@@ -106,7 +107,7 @@
         </course>
       </courses>
     </term>
-    
-    
+
+
   </terms>
 </transcript>

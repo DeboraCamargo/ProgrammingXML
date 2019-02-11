@@ -6,8 +6,11 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project1", "Project1", "{7E98793F-EF3A-4C08-A16B-6CFD3F5960A8}"
 	ProjectSection(SolutionItems) = preProject
 		lab1schema.xsd = lab1schema.xsd
+		lab1schemav2.xsd = lab1schemav2.xsd
 		main.html = main.html
 		scenario1.xml = scenario1.xml
+		scenario2.xml = scenario2.xml
+		scenario3.xml = scenario3.xml
 		Script1.js = Script1.js
 	EndProjectSection
 EndProject

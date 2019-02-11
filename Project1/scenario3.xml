@@ -4,7 +4,7 @@
     Statement of Academic Achievement
   </transcript-title>
   <institutionName>
-    Fanshawe College
+    <!--Fanshawe College-->
   </institutionName>
   <printingDate>
     2019-11-01
@@ -12,7 +12,7 @@
 
 
   <studentName>
-    Damoin Levine
+    Debora Barbosa Silva Camargo
   </studentName>
   <studentIdNumber>
     1234
@@ -37,7 +37,7 @@
       <termCredits>
         20.0
       </termCredits>
-      <courses>
+      <!--<courses>
         <course id="BUSI-1156" hours="2094">
           <courseCode>BUSI-1156</courseCode>
           <courseName>
@@ -49,7 +49,7 @@
           <studentGrade>B+</studentGrade>
           <studentGradePoint>3.5</studentGradePoint>
         </course>
-        
+
         <course id="INFO-1219" hours="2094">
           <courseCode>INFO-1219</courseCode>
           <courseName>
@@ -61,8 +61,52 @@
           <studentGrade>A+</studentGrade>
           <studentGradePoint>4.2</studentGradePoint>
         </course>
+      </courses>-->
+    </term>
+
+
+    <term>
+      <termID>
+        2018 Fall
+      </termID>
+      <programName>
+        Pastry
+      </programName>
+      <studentStatus>In Jail</studentStatus>
+      <termGPA>
+        2.825
+      </termGPA>
+      <termCredits>
+        20.0
+      </termCredits>
+
+      <courses>
+        <course id="SBUSI-1156" hours="2094">
+          <courseCode>SBUSI****1156</courseCode>
+          <courseName>
+            Maquiagem
+          </courseName>
+          <courseCredits>
+            1.0
+          </courseCredits>
+          <studentGrade>qp+</studentGrade>
+          <studentGradePoint>10</studentGradePoint>
+        </course>
+
+        <course id="SINFO-1219" hours="2094">
+          <courseCode>SINFO-1219</courseCode>
+          <courseName>
+            Graphics
+          </courseName>
+          <courseCredits>
+            2.0
+          </courseCredits>
+          <studentGrade>A+</studentGrade>
+          <studentGradePoint>4.2</studentGradePoint>
+        </course>
       </courses>
     </term>
+
 
 
     <term>
@@ -106,7 +150,5 @@
         </course>
       </courses>
     </term>
-    
-    
   </terms>
 </transcript>
