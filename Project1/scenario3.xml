@@ -3,13 +3,17 @@
   <transcript-title>
     Statement of Academic Achievement
   </transcript-title>
-  <institutionName>
-    <!--Fanshawe College-->
-  </institutionName>
+  <!-- COMMENT - A different missing required field of your choice (element or attribute)-->
+  <!--<institutionName>
+    --><!--Fanshawe College--><!--
+  </institutionName>-->
+  
   <printingDate>
     2019-11-01
   </printingDate>
-
+  
+  <!-- COMMENT - An included element that should not be included-->
+  <SHOUDNOTBEHERE>ABCD</SHOUDNOTBEHERE>
 
   <studentName>
     Debora Barbosa Silva Camargo
@@ -37,8 +41,10 @@
       <termCredits>
         20.0
       </termCredits>
-      <!--<courses>
-        <course id="BUSI-1156" hours="2094">
+      <!--COMMENT - A term containing NO (zero) courses-->
+     
+      <courses>
+        <!--<course id="BUSI-1156" hours="2094">
           <courseCode>BUSI-1156</courseCode>
           <courseName>
             Strategies for success
@@ -60,8 +66,8 @@
           </courseCredits>
           <studentGrade>A+</studentGrade>
           <studentGradePoint>4.2</studentGradePoint>
-        </course>
-      </courses>-->
+        </course>-->
+      </courses>
     </term>
 
 
@@ -72,6 +78,7 @@
       <programName>
         Pastry
       </programName>
+      <!--COMMENT Invalid text in a Student Status field-->
       <studentStatus>In Jail</studentStatus>
       <termGPA>
         2.825
@@ -82,6 +89,7 @@
 
       <courses>
         <course id="SBUSI-1156" hours="2094">
+        <!-- COMMENT - Invalid text in a Course Code field-->
           <courseCode>SBUSI****1156</courseCode>
           <courseName>
             Maquiagem
@@ -89,7 +97,9 @@
           <courseCredits>
             1.0
           </courseCredits>
+          <!--COMMENT - Invalid text in a Student Grade field-->
           <studentGrade>qp+</studentGrade>
+          <!--COMMENT - Invalid text in a Student Grade Point field-->
           <studentGradePoint>10</studentGradePoint>
         </course>
 
@@ -110,6 +120,7 @@
 
 
     <term>
+      <!-- COMMENT - Duplicate Term ID fields (for example “2018 Winter” appearing twice)-->
       <termID>
         2018 Fall
       </termID>
