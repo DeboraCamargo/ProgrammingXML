@@ -1,4 +1,4 @@
-// JavaScript source code
+// ajax solution - loading the xml needed
 function loadXMLDoc() {
 
     var xmlhttp = new XMLHttpRequest();
@@ -13,70 +13,82 @@ function loadXMLDoc() {
     xmlhttp.send();
 }
 
+// Outputs the information contained on xml
 function showtranscripts(xml) {
+    //xml from within param
     var xmlDoc = xml.responseXML;
 
+    //HEADING TRANSCRIPT
+    // getting the values from inside the elements and preparing the output
     var transTitle = xmlDoc.getElementsByTagName("transcript-title")[0].firstChild.nodeValue;
-    var output = "<h1>" + transTitle + "</h1>";
-
     var instName = xmlDoc.getElementsByTagName("institutionName")[0].firstChild.nodeValue;
-    output += "<br><h2>" + instName + "</h2>";
-
-
     var studentName = xmlDoc.getElementsByTagName("studentName")[0].firstChild.nodeValue;
-    output += "<br><p>" + studentName + "<br>";
-
     var studentAddress = xmlDoc.getElementsByTagName("studentAddress")[0].firstChild.nodeValue;
-    output += studentAddress + "</p>";
-
     var printingDate = xmlDoc.getElementsByTagName("printingDate")[0].firstChild.nodeValue;
-    output += "<p>" + "Date Printed: " + printingDate + "<br>";
-
-
     var studentIdNumber = xmlDoc.getElementsByTagName("studentIdNumber")[0].firstChild.nodeValue;
-    output += "Student ID: " + studentIdNumber + "</p>";
 
-    // transcript information
+    var content = "<h1>" + transTitle + "</h1>";
+    content += "<br><h2>" + instName + "</h2>";
+    content += "<br><p>" + studentName + "<br>";
+    content += studentAddress + "</p>";
+    content += "<p>" + "Date Printed: " + printingDate + "<br>";
+    content += "Student ID: " + studentIdNumber + "</p>";
 
-    
+    //TRANSCRIPT INFORMATION
+    // get the values inside terms ( terms has n term inside)
     var termsNode = xmlDoc.getElementsByTagName("terms")[0];
-    // loop on all terms
+
+    // first loop on all terms
     for (var j = 0; j < termsNode.childElementCount; j++) {
-        var termNode = termsNode.children[j];
-
-
-        //table term footer
-        var termCredits = termNode.getElementsByTagName("termCredits")[0].firstChild.nodeValue;
-        var termPoints = termNode.getElementsByTagName("termGPA")[0].firstChild.nodeValue;
-        // term headings
-        var studentStatus = termNode.getElementsByTagName("studentStatus")[0].firstChild.nodeValue;
-        var programName = termNode.getElementsByTagName("programName")[0].firstChild.nodeValue;
-        var termID = termNode.getElementsByTagName("termID")[0].firstChild.nodeValue;
-
-
-        output += "<br><b>" + termID + "</b>";
-
-        // loop  all Courses inside of each term
-        var table = "<table border=1><tr><th>Course</th><th>Course Title</th><th>Grade</th><th>Grade Credit</th><th>Grade Points</th></tr>";
-        var coursesNode = termNode.getElementsByTagName("courses")[0];
-        for (var i = 0; i < coursesNode.childElementCount; i++) {
-            var course = coursesNode.getElementsByTagName("course")[i];
-            //var courseCode = course.getElementsByTagName("courseCode")[0].firstChild.nodeValue;
-            var courseCode = course.getAttribute("courseCode");
-            var courseName = course.getElementsByTagName("courseName")[0].firstChild.nodeValue;
-            var courseCredits = course.getElementsByTagName("courseCredits")[0].firstChild.nodeValue;
-            var studentGrade = course.getElementsByTagName("studentGrade")[0].firstChild.nodeValue;
-            var studentGradePoint = course.getElementsByTagName("studentGradePoint")[0].firstChild.nodeValue;
-            table += "<tr><td>" + courseCode + "</td><td>" + courseName + "</td><td>" + courseCredits + "</td><td>" + studentGrade + "</td><td>" + studentGradePoint + "</td></tr>";
-        }
-
-        table += "<tfoot><tr><td colspan=3>Total</td><td>" + termCredits + "</td><td>" + termPoints + "</td></tr></tfoot></table>";
-        output += table;
-
-        output += "<p><b>Term Academic Standing:</b> " + studentStatus + "<br>";
-        output += "<b>Program:</b> " + programName + "</p>";
-
+        //each term
+        content += getTermContent(termsNode.children[j]);
     }
-    document.getElementById("output").innerHTML = output;
+    //showing the entire page
+    document.getElementById("content").innerHTML = content;
 
+}
+
+function getCourseRow(course) {
+    var courseCode = course.getElementsByTagName("courseCode")[0].firstChild.nodeValue;
+    //var courseCode = course.getAttribute("courseCode"); ----> in case refer to attribute
+    var courseName = course.getElementsByTagName("courseName")[0].firstChild.nodeValue;
+    var courseCredits = course.getElementsByTagName("courseCredits")[0].firstChild.nodeValue;
+    var studentGrade = course.getElementsByTagName("studentGrade")[0].firstChild.nodeValue;
+    var studentGradePoint = course.getElementsByTagName("studentGradePoint")[0].firstChild.nodeValue;
+    //rows with data
+    return "<tr><td>" + courseCode + "</td><td>" + courseName + "</td><td>" + courseCredits + "</td><td>" + studentGrade + "</td><td>" + studentGradePoint + "</td></tr>";
+}
+
+function getTermContent(termNode) {
+    var content = "";
+    // now with the termNode we can loop on all information contained in it
+    //term footer total(table)
+    var termCredits = termNode.getElementsByTagName("termCredits")[0].firstChild.nodeValue;
+    var termPoints = termNode.getElementsByTagName("termGPA")[0].firstChild.nodeValue;
+    // term - information about the specific term
+    var studentStatus = termNode.getElementsByTagName("studentStatus")[0].firstChild.nodeValue;
+    var programName = termNode.getElementsByTagName("programName")[0].firstChild.nodeValue;
+    var termID = termNode.getElementsByTagName("termID")[0].firstChild.nodeValue;
+
+    //e.g 2017 summer
+    content += "<br><b>" + termID + "</b>";
+
+    // creating our table header
+    var table = "<table border=1><tr><th>Course</th><th>Course Title</th><th>Grade</th><th>Grade Credit</th><th>Grade Points</th></tr>";
+
+    // get the values inside courses ( term has n courses inside)
+    var coursesNode = termNode.getElementsByTagName("courses")[0];
+
+    // loop  all Courses inside of each term
+    for (var i = 0; i < coursesNode.childElementCount; i++) {
+        table += getCourseRow(coursesNode.getElementsByTagName("course")[i]);
+    }
+
+    //printing table footer
+    table += "<tr><td colspan=3>Total</td><td>" + termCredits + "</td><td>" + termPoints + "</td></tr></table>";
+    content += table;
+    //printing table information about the specific term
+    content += "<p><b>Term Academic Standing:</b> " + studentStatus + "<br>";
+    content += "<b>Program:</b> " + programName + "</p>";
+    return content;
 }
