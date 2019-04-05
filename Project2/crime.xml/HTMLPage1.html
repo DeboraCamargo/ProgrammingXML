@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Project 2</title>
+</head>
+<body onload="loadData();">
+    <h1>Incidents of crime in Canada for 2013</h1>
+    <span>Select region</span>
+    <select id="regions"></select>
+    <button type="button" onclick="renderStatisticsXSLT();">Get Statistics</button>
+    <hr />
+   <div id="table"></div>
+</body>
+</html>
+
+<script>
+
+    //function loadData() {
+    //    // Create XMLHttpRequest object
+    //    var xmlhttp = new XMLHttpRequest();
+
+    //    // Once XML document is loaded, calls buildFoodsList() to process the data
+    //    xmlhttp.onreadystatechange = function () {
+    //        if (this.readyState === 4 && this.status === 200) {
+    //            buildRegionList(this);
+    //        }
+    //    };
+
+    //    // Send a request for the XML data
+    //    xmlhttp.open("GET", "crime.xml", true);
+    //    xmlhttp.send();
+    //}
+
+    function loadXMLDoc(filename) {
+        if (window.ActiveXObject) {
+            xhttp = new ActiveXObject("Msxml2.XMLHTTP");
+        }
+        else {
+            xhttp = new XMLHttpRequest();
+        }
+        xhttp.open("GET", filename, false);
+
+        try {
+            xhttp.responseType = "msxml-document"
+        }
+        catch (err) { }
+        xhttp.send("");
+        return xhttp.responseXML;
+    }
+
+    function loadData() {
+        var xml = loadXMLDoc("crime.xml");
+
+        buildRegionList(xml);
+    }
+
+    function buildRegionList(xmlDoc) {
+
+        var regionList = xmlDoc.evaluate("//region/@name", xmlDoc, null, XPathResult.ANY_TYPE, null);
+
+        // Construct the list of food names in html format
+        var list = "";
+        var node = regionList.iterateNext();
+        console.log(node);
+        while (node) {
+            var regionName = node.value;
+            list += "<option value='" + regionName + "'>" + regionName + "</option>";
+
+            node = regionList.iterateNext(); // Retrieves a node interface for the next name element (if there is one)
+        }
+
+        // Post the list to the web page
+        document.getElementById("regions").innerHTML = list;
+    }
+
+    function renderStatisticsXSLT() {
+        xml = loadXMLDoc("crime.xml");
+        xslt = loadXMLDoc("XSLTFile1.xslt");
+
+        var regionName = document.getElementById("regions").value;
+
+
+        if (window.ActiveXObject || xhttp.responseType == "msxml-document") {
+            var template = new ActiveXObject("Msxml2.XslTemplate.6.0");
+            template.stylesheet = xslt;
+
+            var proc = template.createProcessor();
+            proc.input = xml;
+            proc.addParameter("region", regionName);
+
+            proc.transform();
+            document.getElementById("table").innerHTML = proc.output;
+        }
+        else if (typeof XSLTProcessor !== 'undefined') {
+            var xsltProcessor = new XSLTProcessor();
+            xsltProcessor.importStylesheet(xslt);
+
+            xsltProcessor.setParameter(null, "region", regionName);
+
+            var resultDocument = xsltProcessor.transformToFragment(xml, document);
+            document.getElementById("table").innerHTML = "";
+            document.getElementById("table").appendChild(resultDocument);
+        }
+    }
+
+
+</script>
